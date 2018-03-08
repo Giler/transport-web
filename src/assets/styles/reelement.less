@@ -1,0 +1,101 @@
+// element 样式重置
+.el-form-item {
+  margin-bottom: 10px;
+}
+
+.el-input__inner,
+.el-textarea__inner {
+  border-radius: 0;
+}
+
+.el-form-item__content {
+  line-height: 30px;
+}
+
+.el-form-item__label {
+  padding-top: 8px;
+}
+
+.el-button {
+  transition: all .3s;
+}
+
+.el-checkbox__inner {
+  z-index: 0;
+}
+
+.el-tabs {
+  display: block;
+}
+
+.el-form .el-form-item{
+  margin:0 40px 20px 0;
+}
+
+.nav-search {
+  .el-tabs {
+    margin-top: 7px;
+  }
+  .el-tabs__header {
+    margin-bottom: 0;
+    border-bottom: none;
+    .el-tabs__active-bar {
+      background-color: @blueGrey300;
+    }
+    .el-tabs__item {
+      height: 25px;
+      line-height: 25px;
+      color: #fff;
+      border-radius: 3px;
+      &.is-active{
+          background: @grey50;
+          color: @blue400;
+      }
+    }
+  }
+}
+
+// 选择事件概要pop
+.case-popup {
+  .el-tabs {
+    .el-tabs__content {
+      overflow: auto;
+      max-height: 400px;
+    }
+  }
+}
+
+.search-result-con {
+  .smart-grid td {
+    border: none;
+    border-bottom: 3px solid @blue200;
+    padding-bottom: 45px;
+  }
+}
+
+.tab-style() {
+  background-color: @green200;
+}
+
+.box1 .el-tabs__item:nth-child(1) {
+  .tab-style;
+}
+.box2 .el-tabs__item:nth-child(2) {
+  .tab-style;
+}
+.box3 .el-tabs__item:nth-child(3) {
+  .tab-style;
+}
+.box4 .el-tabs__item:nth-child(4) {
+  .tab-style;
+}
+.box5 .el-tabs__item:nth-child(5) {
+  .tab-style;
+}
+.box6 .el-tabs__item:nth-child(6) {
+  .tab-style;
+}
+
+.wangEditor-txt {
+  word-break: break-all;
+}

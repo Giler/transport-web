@@ -1,0 +1,127 @@
+@import './common.less';
+@import './reelement.less';
+@import './iconfont.less';
+@import './hack.css';
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+* {
+  box-sizing: border-box;
+}
+body, select, input, textarea, button {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+body {
+  height: 100%;
+  overflow: hidden;
+  background-size: cover;
+  font-size: 15px;
+}
+
+a {
+  outline: 0 none;
+  text-decoration: none;
+}
+
+// 滚动条样式
+::-webkit-scrollbar-track-piece {
+    background-color: #ddd;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: #777;
+}
+
+#app {
+  height: 100%;
+}
+
+.smart-grid {
+  a{
+    color: @blue;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    max-width: 400px;
+    display: block;
+  }
+}
+
+// 公告/知识查看
+.article-view {
+  h2 {
+    .text-center;
+    font-size: 1rem;
+  }
+  .sub-header {
+    background: @blueGrey50;
+    .clearfix;
+  }
+  .sub-header, .content {
+    padding: 8px;
+  }
+  .oper {
+    .text-center;
+  }
+}
+// 公告/知识搜索结果页
+.search-result {
+  h1 {
+    .text-center;
+    font-size: 16px;
+  }
+  a {
+    color: black;
+  }
+  .content {
+    margin-bottom: 20px;
+  }
+  .sub-header {
+    // background: @blueGrey50;
+    .clearfix;
+  }
+  .sub-header, .content {
+    padding: 8px;
+  }
+  .oper {
+    .text-center;
+  }
+}
+.highlighterTag {
+  font-weight: bold;
+  background-color: @yellow500;
+}
+.wangEditor-container{
+  a {
+    outline: 0 none;
+    text-decoration: underline;
+  }
+  .wangEditor-txt {
+    line-height: 1.8;
+    p {
+      margin: 0;
+    }
+  }
+}
+.importantTag {
+  color: @red500;
+}
+
+.innerTag {
+  color: @blue600;
+}
+
+.operaLogList {
+  overflow-y: auto;
+  overflow-x: auto;
+  max-height: 160px;
+}
