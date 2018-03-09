@@ -88,8 +88,7 @@
           <li v-auth="'ls0701'"><i class="icon line"></i><a @click="addTab('teacher-list')"><i class="icon yuan"></i>教师列表</a></li>
           <li v-auth="'ls0701'"><i class="icon line"></i><a @click="addTab('teacher-add')"><i class="icon yuan"></i>添加教师</a></li>
         </ul>
-      </li>
-      
+      </li>      
       <li v-auth="'ls08'">
         <div class="top-name clearfix" @click="showDeviceCheck = !showDeviceCheck">
           <div class="col-4">
@@ -157,7 +156,7 @@ import {
 } from '@/store/types'
 
 export default {
-  data() {
+  data () {
     return {
       showCompose: true,
       showWorkbench: true,
@@ -175,7 +174,7 @@ export default {
       currentTab: state => state.appFrame.currentTab
     })
   },
-  mounted() {
+  mounted () {
     // 默认打开系统首页
     if (!this.currentTab) {
       this.addTab('home')
@@ -190,124 +189,124 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../../assets/styles/mixins.less';
-@import '../../assets/styles/colors.less';
+@import "../../assets/styles/mixins.less";
+@import "../../assets/styles/colors.less";
 section {
-    height: 100%;
-    background-color: #f6f2ed;
+  height: 100%;
+  background-color: #f6f2ed;
 }
 .menu-tabs-title {
-    font-size: 14px;
-    border-bottom: 1px solid #ded9d3;
-    padding: 10px 10px 10px 20px;
-    color: #333;
+  font-size: 14px;
+  border-bottom: 1px solid #ded9d3;
+  padding: 10px 10px 10px 20px;
+  color: #333;
 }
 .fixed-menu {
-    li {
-        border-bottom: 1px solid #ded9d3;
-        color: #666;
-        font-size: 14px;
-        cursor: pointer;
-        & > div {
-            padding: 15px;
-            div {
-                padding: 1px;
-            }
-            &:first-child {
-                border-right: 1px solid #ded9d3;
-            }
-            &:hover {
-                transition: all 0.3s;
-                background-color: #ede7e0;
-            }
-        }
+  li {
+    border-bottom: 1px solid #ded9d3;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+    & > div {
+      padding: 15px;
+      div {
+        padding: 1px;
+      }
+      &:first-child {
+        border-right: 1px solid #ded9d3;
+      }
+      &:hover {
+        transition: all 0.3s;
+        background-color: #ede7e0;
+      }
     }
-    .iconfont {
-        color: #999;
-        font-size: 18px;
-        &.icon-shouyeshouye {
-            color: #18baf5;
-        }
+  }
+  .iconfont {
+    color: #999;
+    font-size: 18px;
+    &.icon-shouyeshouye {
+      color: #18baf5;
     }
+  }
 }
 
 .access-wrap {
-    font-size: 14px;
-    padding-top: 5px;
+  font-size: 14px;
+  padding-top: 5px;
 }
 
 .top-fun-menu {
-    font-size: 14px;
-    color: #333;
-    background-color: #c6c0b3;
-    cursor: pointer;
-    & > li:not(:last-child) {
-        border-bottom: 1px solid #ded9d3;
+  font-size: 14px;
+  color: #333;
+  background-color: #c6c0b3;
+  cursor: pointer;
+  & > li:not(:last-child) {
+    border-bottom: 1px solid #ded9d3;
+  }
+  .icon,
+  .iconfont {
+    color: #666;
+  }
+  .top-name {
+    padding: 15px 10px;
+    & > div {
+      &:first-child {
+        padding-left: 20px;
+      }
     }
-    .icon,
-    .iconfont {
-        color: #666;
-    }
-    .top-name {
-        padding: 15px 10px;
-        & > div {
-            &:first-child {
-                padding-left: 20px;
-            }
-        }
-    }
+  }
 }
 
 .child-fun-menu {
-    background-color: #e7e4dc;
-    margin-left: -4px;
-    font-size: 12px;
-    padding-left: 40px;
-    li {
-        display: block;
-        padding: 10px 10px 10px 15px;
-        border-left: 2px solid #c6c0b3;
-        position: relative;
-        &:last-child .line::before {
-            content: ' ';
-            width: 2px;
-            height: 16px;
-            display: inline-block;
-            background-color: #e7e4dc;
-            position: relative;
-            top: 2px;
-            left: -2px;
-        }
-        .line {
-            display: inline-block;
-            height: 2px;
-            width: 10px;
-            background-color: #c6c0b3;
-            .absolute(17px, auto, auto, 0);
-        }
-        a {
-            padding: 3px 5px;
-            cursor: pointer;
-            &:hover {
-                transition: all 0.3s;
-                background-color: #c6c0b3;
-                border-radius: 10px;
-                .yuan {
-                    transition: all 0.3s;
-                    border-color: #666;
-                }
-            }
-            .yuan {
-                display: inline-block;
-                height: 12px;
-                width: 12px;
-                border-radius: 50%;
-                border: 2px solid #c6c0b3;
-                margin-right: 8px;
-                position: relative;
-                top: 2px;
-            }
-        }
+  background-color: #e7e4dc;
+  margin-left: -4px;
+  font-size: 12px;
+  padding-left: 40px;
+  li {
+    display: block;
+    padding: 10px 10px 10px 15px;
+    border-left: 2px solid #c6c0b3;
+    position: relative;
+    &:last-child .line::before {
+      content: " ";
+      width: 2px;
+      height: 16px;
+      display: inline-block;
+      background-color: #e7e4dc;
+      position: relative;
+      top: 2px;
+      left: -2px;
     }
+    .line {
+      display: inline-block;
+      height: 2px;
+      width: 10px;
+      background-color: #c6c0b3;
+      .absolute(17px, auto, auto, 0);
+    }
+    a {
+      padding: 3px 5px;
+      cursor: pointer;
+      &:hover {
+        transition: all 0.3s;
+        background-color: #c6c0b3;
+        border-radius: 10px;
+        .yuan {
+          transition: all 0.3s;
+          border-color: #666;
+        }
+      }
+      .yuan {
+        display: inline-block;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        border: 2px solid #c6c0b3;
+        margin-right: 8px;
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
 }
 </style>

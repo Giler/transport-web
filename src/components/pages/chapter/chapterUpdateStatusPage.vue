@@ -35,15 +35,9 @@
 </div>
 </template>
 <script>
-import {
-  updateStatus
-} from '@/api/chapterApi'
-import {
-  appFrameTypes
-} from '@/store/types'
-import {
-  mapActions
-} from 'vuex'
+import { updateStatus } from '@/api/chapterApi'
+import { appFrameTypes } from '@/store/types'
+import { mapActions } from 'vuex'
 
 export default {
   props: {
@@ -54,23 +48,30 @@ export default {
   data() {
     return {
       submitData: {},
-      typeData: [{
-        value: 1,
-        label: '正课'
-      }, {
-        value: 2,
-        label: '试讲课'
-      }],
-      statusData: [{
-        value: 1,
-        label: '上架'
-      }, {
-        value: 2,
-        label: '灰度'
-      }, {
-        value: 3,
-        label: '无效'
-      }]
+      typeData: [
+        {
+          value: 1,
+          label: '正课'
+        },
+        {
+          value: 2,
+          label: '试讲课'
+        }
+      ],
+      statusData: [
+        {
+          value: 1,
+          label: '上架'
+        },
+        {
+          value: 2,
+          label: '灰度'
+        },
+        {
+          value: 3,
+          label: '无效'
+        }
+      ]
     }
   },
   created() {
@@ -107,4 +108,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
 </style>

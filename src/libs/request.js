@@ -1,5 +1,4 @@
 import { Message } from 'element-ui'
-import { getApiHost, getLoginUrl } from '@/common/settings'
 
 const toQueryStr = params => {
   const queryStrs = []
@@ -68,14 +67,14 @@ const request = (url, options = {}) => {
     options.headers['Accept'] = 'application/json'
     /* eslint-disable no-undef  */
     fetch(`${getApiHost()}${url}`, options)
-    .then(checkInternalStatus)
-    .then(resp => resp.json())
-    .then(checkBizStatus)
-    .then(({data}) => resolve(data))
-    .catch(err => {
-      Message.error(String(err)).showClose = true
-      reject(err)
-    })
+      .then(checkInternalStatus)
+      .then(resp => resp.json())
+      .then(checkBizStatus)
+      .then(({data}) => resolve(data))
+      .catch(err => {
+        Message.error(String(err)).showClose = true
+        reject(err)
+      })
   })
 }
 

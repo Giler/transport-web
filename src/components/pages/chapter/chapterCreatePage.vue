@@ -6,7 +6,7 @@
         <el-form-item label="">
           <el-input v-model="submitData.level" placeholder="选择Level" :disabled="true"></el-input>
         </el-form-item>
-      </el-col> 
+      </el-col>
       <el-col :span="11">
         <el-form-item label="">
           <el-button @click="openTerm" type="primary">选择等级</el-button>
@@ -16,7 +16,6 @@
     <!-- <el-form-item label="学期">
       <el-input v-model="submitData.termName" placeholder="无需手动输入，请选择等级" :disabled="true"></el-input>
     </el-form-item> -->
-    
     <el-form-item label="课程编号">
       <el-input v-model="submitData.chapterId" placeholder="输入课程编号" @blur="showChapter"></el-input>
     </el-form-item>
@@ -79,8 +78,7 @@ import {
 import {
   mapActions
 } from 'vuex'
-import termPage from '@/components/pages/term/termPage'
-import { getApiHost } from '@/common/settings'
+// import termPage from '@/components/pages/term/termPage'
 export default {
   props: {
     // 允许上传的文件类型
@@ -155,13 +153,13 @@ export default {
     async showChapter () {
       let that = this
       if (this.submitData.chapterId != null) {
-         await getLastChapter({ chapterId: this.submitData.chapterId })
+        await getLastChapter({ chapterId: this.submitData.chapterId })
           .then(res => {
-            if (res != null){
-              that.submitData = {chapterId: res.chapterId}
+            if (res != null) {
+              that.submitData = { chapterId: res.chapterId }
               that.submitData.courseId = res.courseId
               that.submitData.name = res.name
-              //that.submitData.level = res.level
+              // that.submitData.level = res.level
               that.submitData.duration = res.duration
               that.submitData.remark = res.remark
               that.submitData.type = res.type
@@ -236,8 +234,8 @@ export default {
       this.submitData.courseId = term.id
       this.submitData.courseName = term.name
       this.submitData.level = term.level
-      //this.submitData.termName = term.name
-      //this.submitData.term = term.term
+      // this.submitData.termName = term.name
+      // this.submitData.term = term.term
       this.termFormVisible = false
     },
     async save () {
@@ -258,7 +256,6 @@ export default {
     }
   },
   components: {
-    termPage
   }
 }
 </script>

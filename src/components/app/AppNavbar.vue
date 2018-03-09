@@ -1,7 +1,7 @@
 <template>
 <section>
   <div class="user-info">
-    <img class="pull-left" src="../../assets/images/ic_launcher.png">
+    <!-- <img class="pull-left" src="../../assets/images/ic_launcher.png"> -->
     <div class="pull-right">
       <p>{{userName}}</p>
       <a href="#" @click="logout">退出</a>
@@ -32,9 +32,7 @@
 
 <script>
 import Vue from 'vue'
-import { getLoginUrl } from '@/common/settings'
-import {appFrameTypes} from '@/store/types'
-import { getUser } from '@/api/LoginApi'
+import { appFrameTypes } from '@/store/types'
 import { mapActions } from 'vuex'
 import { updateSearchHistory, getSearchHistory } from '@/store/storage'
 Vue.component('app-nav-bar-dataitem', {
@@ -42,9 +40,11 @@ Vue.component('app-nav-bar-dataitem', {
   render: function (h, ctx) {
     const item = ctx.props.item
     return h('li', ctx.data, [
-      h('div', {domProps: {
-        innerHTML: item.value
-      }}, [item.value])
+      h('div', {
+        domProps: {
+          innerHTML: item.value
+        }
+      }, [item.value])
     ])
   },
   props: {
@@ -52,7 +52,7 @@ Vue.component('app-nav-bar-dataitem', {
   }
 })
 export default {
-  data() {
+  data () {
     return {
       showUserMore: false,
       isEmpty: false,
@@ -63,11 +63,11 @@ export default {
       userName: '',
       searchQuery: '',
       sortUtils: {
-//        direction: 'DESC',
-//        property: [
-//          'klKnowledge.isImportant',
-//          'klKnowledge.createdAt'
-//        ]
+        //        direction: 'DESC',
+        //        property: [
+        //          'klKnowledge.isImportant',
+        //          'klKnowledge.createdAt'
+        //        ]
       },
       searchQueryOldVal: '',
       search_popover: false,
@@ -80,7 +80,7 @@ export default {
     ...mapActions({
       addTab: appFrameTypes.A.ADD_TAB
     }),
-    logout() {
+    logout () {
       this.$confirm('确定退出系统吗？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -90,49 +90,45 @@ export default {
         // this.$router.replace('login')
       })
     },
-    async getUserName() {
-      this.user = await getUser()
-      this.userName = this.user.name
-    },
-// 选择时联想条目时打开详情页
-    handleSelect(item) {
+    // 选择时联想条目时打开详情页
+    handleSelect (item) {
       if (this.isEmpty) {
         this.searchQuery = item.value
         this.search()
       } else {
         this.searchQuery = this.searchQueryOldVal
         updateSearchHistory(this.searchQuery, this.activeName)
-        this.addTab({id: this.detailTabId, params: item.entity, name: item.entity[this.klEntityName].title})
+        this.addTab({ id: this.detailTabId, params: item.entity, name: item.entity[this.klEntityName].title })
         this.search_popover = false
       }
     },
     // 取消选择
-    cancelSelect() {
+    cancelSelect () {
       this.$refs.elAuto.highlightedIndex = -1
     },
     // 切换搜索类型
-    changeTabs() {
+    changeTabs () {
       if (this.activeName === 'knowl') {
         this.detailTabId = 'knowledgeDetail'
         this.klEntityName = 'klKnowledge'
         this.searchResultTabId = 'searchKnowledgeResultPage'
         this.tabName = '知识搜索-'
-//        this.sortUtils.property = [
-//          "_score",
-//          'klKnowledge.isImportant',
-//          'klKnowledge.viewCount',
-//          'klKnowledge.createdAt'
-//        ]
+        //        this.sortUtils.property = [
+        //          "_score",
+        //          'klKnowledge.isImportant',
+        //          'klKnowledge.viewCount',
+        //          'klKnowledge.createdAt'
+        //        ]
       } else if (this.activeName === 'act') {
         this.detailTabId = 'activeDetail'
         this.klEntityName = 'activeInfo'
         this.searchResultTabId = 'searchActiveResultPage'
         this.tabName = '活动搜索-'
-//        this.sortUtils.property = [ "_score", 'activeInfo.createdAt' ]
+        //        this.sortUtils.property = [ "_score", 'activeInfo.createdAt' ]
       }
     },
     // 联想内容
-    async querySearchAsync(queryString, cb) {
+    async querySearchAsync (queryString, cb) {
       // 联想内容只搜索title和ID
       // console.log(1)
       queryString = this.searchQuery
@@ -169,7 +165,7 @@ export default {
       // this.$refs.elAuto.getData(queryString)
     },
     // 获取联想内容
-    async getSearchResult(query) {
+    async getSearchResult (query) {
       const searchResult = '联想内容'
       const results = []
       if (searchResult) {
@@ -183,19 +179,19 @@ export default {
       }
       return results
     },
-// Api返回搜索结果
-    async getPageByApi(query) {
+    // Api返回搜索结果
+    async getPageByApi (query) {
       let searchResult = {}
       return searchResult
     },
-    createStateFilter(queryString) {
+    createStateFilter (queryString) {
       return state => {
         // return (state.value.indexOf(queryString.toLowerCase()) === 0)
         return false
       }
     },
     // 点击查询跳转到搜索结果页
-    async search() {
+    async search () {
       // 搜索列表搜索title、内容、关键字ID等
       if (!this.searchQuery) {
         return
@@ -210,31 +206,31 @@ export default {
         size: 10
       }
       // const searchResult = await this.getPageByApi(query)
-      this.addTab({id: this.searchResultTabId, params: {pageData: {}, queryParams: query, detailTabId: this.detailTabId, klEntityName: this.klEntityName}, name: this.tabName + this.searchQuery})
+      this.addTab({ id: this.searchResultTabId, params: { pageData: {}, queryParams: query, detailTabId: this.detailTabId, klEntityName: this.klEntityName }, name: this.tabName + this.searchQuery })
     },
-    reloadAll() {
+    reloadAll () {
       window.location.reload(true)
     },
-    async getUserCurrentChannel() {
+    async getUserCurrentChannel () {
       this.channleId = 'beijing'
     }
   },
   // 保存输入框上一次内容，选择时防止整条内容
   watch: {
-    searchQuery(curVal, oldVal) {
+    searchQuery (curVal, oldVal) {
       this.searchQueryOldVal = curVal
     }
   },
-  created() {
+  created () {
     this.getUserName()
   }
 }
 </script>
 
 <style lang="less" scoped>
-@import '../../assets/styles/mixins.less';
-@import '../../assets/styles/vars.less';
-@import '../../assets/styles/colors.less';
+@import "../../assets/styles/mixins.less";
+@import "../../assets/styles/vars.less";
+@import "../../assets/styles/colors.less";
 
 .logo {
   background: url(../../assets/images/logo.png) no-repeat 0 50%;
@@ -311,11 +307,11 @@ section {
   min-width: 200px;
   overflow-y: auto;
   overflow-x: auto;
-  line-height:30px;
+  line-height: 30px;
 }
 .suggestionList {
   &:hover {
-    background:@grey200;
+    background: @grey200;
   }
   li {
     list-style-type: none;

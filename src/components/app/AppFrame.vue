@@ -3,7 +3,7 @@
   <el-menu class="el-menu-demo" mode="horizontal">
     <el-submenu :index="item.id + ''" v-for="(item, index) in firstTypeList" :key="index">
       <template slot="title">{{item.name}}</template>
-      <el-menu-item :index="sub.id + ''" v-for="(sub, i) in item.subTypeList" @click="handleSelect(sub.id, item.name+'/'+sub.name)">{{sub.name}}</el-menu-item>
+      <el-menu-item :index="sub.id + ''" v-for="sub in item.subTypeList" :key="sub" @click="handleSelect(sub.id, item.name+'/'+sub.name)">{{sub.name}}</el-menu-item>
     </el-submenu>
   </el-menu>
   <div v-if="tabs.length" class="tabs-wrap">
@@ -37,7 +37,7 @@
 import { mapState, mapActions } from 'vuex'
 import { appFrameTypes } from '@/store/types'
 export default {
-  data() {
+  data () {
     return {
       firstTypeList: []
     }
@@ -49,7 +49,7 @@ export default {
       scrollButton: state => state.appFrame.scrollButton
     })
   },
-  async mounted() {
+  async mounted () {
   },
   methods: {
     ...mapActions({
@@ -63,8 +63,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../../assets/styles/mixins.less';
-@import '../../assets/styles/colors.less';
+@import "../../assets/styles/mixins.less";
+@import "../../assets/styles/colors.less";
 
 @tabHeight: 40px;
 
@@ -96,14 +96,14 @@ section {
       text-align: center;
       cursor: pointer;
       &[disabled] {
-        opacity: .5;
+        opacity: 0.5;
         cursor: auto;
-        &:hover .icon{
+        &:hover .icon {
           color: @blue;
         }
       }
       &:hover .icon {
-        transition: all .2s;
+        transition: all 0.2s;
         color: @blue800;
       }
     }
@@ -122,7 +122,7 @@ section {
     display: inline-block;
     color: @grey700;
     background-color: @grey50;
-    transition: background-color .2s;
+    transition: background-color 0.2s;
     cursor: pointer;
     border-right: 1px solid @grey300;
     border-top: 1px solid @grey300;
@@ -142,17 +142,17 @@ section {
       padding-left: 8px;
       font-size: 12px;
       color: @grey700;
-      transition: all .2s;
+      transition: all 0.2s;
       cursor: pointer;
       &:hover {
         color: @black;
       }
     }
-    a{
+    a {
       overflow: hidden;
-      text-overflow:ellipsis;
+      text-overflow: ellipsis;
       white-space: nowrap;
-      max-width:90px;
+      max-width: 90px;
       display: inline-block;
       line-height: 12px;
     }
@@ -160,18 +160,18 @@ section {
 }
 .tabs-content {
   .absolute(@tabHeight + 9, 0, 0, 0);
-  transition: all .2s;
+  transition: all 0.2s;
   li.content-wrap {
     height: 100%;
     padding: 10px;
     overflow: auto;
   }
 }
-.article-view{
-    height: 100%;
-    padding: 10px;
-    overflow: auto;
-    margin:0 auto;
-    max-width: 1100px;
+.article-view {
+  height: 100%;
+  padding: 10px;
+  overflow: auto;
+  margin: 0 auto;
+  max-width: 1100px;
 }
 </style>

@@ -51,7 +51,6 @@
     </smart-grid-column>
     </span>
   </smart-grid>
-  <show-dialog :prop="dialog"></show-dialog>  
 </div>
 </template>
 <script>
@@ -73,7 +72,7 @@ export default {
       type: Boolean
     }
   },
-  data() {
+  data () {
     return {
       statusMap: {
         1: '上架',
@@ -100,7 +99,7 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     this.query()
     console.log(this.hideOperation)
   },
@@ -108,14 +107,13 @@ export default {
     ...mapActions({
       addTab: appFrameTypes.A.ADD_TAB
     }),
-
-    async query(pageable = { //
+    async query (pageable = { //
       size: 10,
       page: 0
     }) {
       this.loading = true
       try {
-        this.resultList = await getChapterPage({ ...pageable, //异步变同步
+        this.resultList = await getChapterPage({...pageable,
           ...this.requestQuery
         })
         console.log(this.resultList)
@@ -123,28 +121,28 @@ export default {
         this.loading = false
       }
     },
-    updateChapterStatus(rowData) {
+    updateChapterStatus (rowData) {
       this.addTab({
         id: 'chapter-update-status',
         params: rowData,
         name: '课件审核'
       })
     },
-    updateChapterSeq(rowData) {
+    updateChapterSeq (rowData) {
       this.addTab({
         id: 'chapter-update-seq',
         params: rowData,
         name: '课件顺序更新'
       })
     },
-    showDeleteChapter(rowData) {
+    showDeleteChapter (rowData) {
       this.dialog.fn = () => {
         this.deleteChapter(rowData)
       }
       this.dialog.msg = '确定要删除该课件吗？'
       this.dialog.visible = true
     },
-    async deleteChapter(rowData) {
+    async deleteChapter (rowData) {
       try {
         this.submitObject.chapterId = rowData.chapterId
         this.submitObject.version = rowData.version
@@ -164,10 +162,10 @@ export default {
       this.dialog.visible = false
       this.eventHub.$emit('reload')
     },
-    makeChapter() {
+    makeChapter () {
       this.$emit('emit-chapter', this.chooseChapterOne)
     },
-    handleCheck(rowData, checked) {
+    handleCheck (rowData, checked) {
       this.chooseChapterOne = rowData
     }
   },
@@ -178,4 +176,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
 </style>

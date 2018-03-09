@@ -16,7 +16,6 @@
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex'
 import { appIndexTypes, appFrameTypes } from '@/store/types'
-import { getLoginUrl } from '@/common/settings'
 import AppNavbar from './AppNavbar'
 import AppMenu from './AppMenu'
 import AppFrame from './AppFrame'
@@ -28,7 +27,7 @@ export default {
       menuExpend: state => state.appIndex.menuExpend
     })
   },
-  created() {
+  created () {
     if (!this.checkBrowser()) {
       window.alert('请使用谷歌、火狐、Opera或IE9以上浏览器访问本系统！')
       window.location.href = getLoginUrl()
@@ -41,7 +40,7 @@ export default {
     ...mapActions({
       addTab: appFrameTypes.A.ADD_TAB
     }),
-    checkBrowser() {
+    checkBrowser () {
       const agent = navigator.userAgent.toLowerCase()
       if ((agent.indexOf('msie') >= 0) && (agent.indexOf('opera') < 0)) {
         const fIEVersion = agent.match(/msie ([\d.]+)/)[1]
@@ -57,7 +56,7 @@ export default {
       }
       return false
     },
-    logout() {
+    logout () {
       window.location.href = getLoginUrl()
     }
   },
@@ -70,8 +69,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../../assets/styles/vars.less';
-@import '../../assets/styles/mixins.less';
+@import "../../assets/styles/vars.less";
+@import "../../assets/styles/mixins.less";
 @menuWidth: 200px;
 section {
   height: 100%;
@@ -106,12 +105,12 @@ menu {
   transition: all 0.2s;
   width: @menuWidth;
   &.expend {
-      left: 0;
+    left: 0;
   }
 }
 
 main {
-  transition: all .2s;
+  transition: all 0.2s;
   .absolute(@appNavHeight, 0, 0, 0);
   &.menu-expend {
     left: @menuWidth;

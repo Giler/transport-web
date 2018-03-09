@@ -21,11 +21,11 @@ const triggerCallback = (cbs, tab) => {
 
 // actions
 const actions = {
-  [appFrameTypes.A.CALC_SCROLL_BUTTON]({ state, commit }, scrollRight = false) {
+  [appFrameTypes.A.CALC_SCROLL_BUTTON] ({ state, commit }, scrollRight = false) {
     Vue.nextTick(() => {
       const $tabs = document.querySelector('.tabs-wrap .tabs-header ul')
-      let {scrollWidth, offsetWidth, scrollLeft} = $tabs
-      const scrollButton = {...state.scrollButton}
+      let { scrollWidth, offsetWidth, scrollLeft } = $tabs
+      const scrollButton = { ...state.scrollButton }
       if (offsetWidth === scrollWidth) {
         scrollButton.show = false
       } else {
@@ -51,9 +51,9 @@ const actions = {
       commit(appFrameTypes.UPDATE_SCROLL_BUTTON, scrollButton)
     })
   },
-  [appFrameTypes.A.SCROLL]({ dispatch }, isLeft = true) {
+  [appFrameTypes.A.SCROLL] ({ dispatch }, isLeft = true) {
     const $tabs = document.querySelector('.tabs-wrap .tabs-header ul')
-    const {scrollWidth, offsetWidth, scrollLeft} = $tabs
+    const { scrollWidth, offsetWidth, scrollLeft } = $tabs
     const currentWidht = offsetWidth + scrollLeft
     let step = 50
     if (isLeft) {
@@ -66,12 +66,12 @@ const actions = {
     // 滚动按钮控制
     dispatch(appFrameTypes.A.CALC_SCROLL_BUTTON)
   },
-  [appFrameTypes.A.ADD_TAB]({ state, commit, dispatch }, component) {
+  [appFrameTypes.A.ADD_TAB] ({ state, commit, dispatch }, component) {
     if (!component) {
       return
     }
     if (typeof component === 'string') {
-      component = {id: component}
+      component = { id: component }
     }
     const { id, link } = component
     // link为外链，直接open
@@ -105,14 +105,14 @@ const actions = {
         return
       }
       // 构成新组件
-      tab = Object.assign({}, pages[0], component, {seqId})
+      tab = Object.assign({}, pages[0], component, { seqId })
       commit(appFrameTypes.ADD_TAB, tab)
     }
     dispatch(appFrameTypes.A.ACTIVE_TAB, tab)
     // 滚动按钮控制
     dispatch(appFrameTypes.A.CALC_SCROLL_BUTTON, true)
   },
-  [appFrameTypes.A.REMOVE_TAB]({ state, commit, dispatch }, seqId) {
+  [appFrameTypes.A.REMOVE_TAB] ({ state, commit, dispatch }, seqId) {
     const { tabs, currentTab } = state
     let index = -1
     // 找到tab的索引
@@ -136,28 +136,28 @@ const actions = {
     // 滚动按钮控制
     dispatch(appFrameTypes.A.CALC_SCROLL_BUTTON)
   },
-  [appFrameTypes.A.ACTIVE_TAB]({ state, commit, dispatch }, tab) {
+  [appFrameTypes.A.ACTIVE_TAB] ({ state, commit, dispatch }, tab) {
     commit(appFrameTypes.ACTIVE_TAB, tab.seqId)
     state.cbs.length && triggerCallback(state.cbs, tab)
   }
 }
-  // mutations
+// mutations
 const mutations = {
-  [appFrameTypes.ADD_TAB](state, tab) {
+  [appFrameTypes.ADD_TAB] (state, tab) {
     state.tabs.push(tab)
   },
-  [appFrameTypes.ACTIVE_TAB](state, seqId) {
+  [appFrameTypes.ACTIVE_TAB] (state, seqId) {
     state.currentTab = seqId
   },
-  [appFrameTypes.WATCH_TAB](state, cb) {
+  [appFrameTypes.WATCH_TAB] (state, cb) {
     if (cb && typeof cb === 'function') {
       state.cbs.push(cb)
     }
   },
-  [appFrameTypes.REMOVE_TAB](state, index) {
+  [appFrameTypes.REMOVE_TAB] (state, index) {
     state.tabs.splice(index, 1)
   },
-  [appFrameTypes.UPDATE_SCROLL_BUTTON](state, scrollButton) {
+  [appFrameTypes.UPDATE_SCROLL_BUTTON] (state, scrollButton) {
     state.scrollButton = scrollButton
   }
 }

@@ -4,7 +4,7 @@ import { appIndexTypes } from '@/store/types'
 const state = {
   menuExpend: true
 }
-  // mutations
+// mutations
 const mutations = {
   [appIndexTypes.TOGGLE_MENU](state) {
     state.menuExpend = !state.menuExpend
